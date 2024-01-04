@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import {ThemeProvider} from "styled-components";
 import {defaultTheme} from "./styles/themes/default.ts";
+import {GlobalStyle} from "./styles/global.ts";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -29,6 +30,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <GlobalStyle />
     </ ThemeProvider>
   )
 }
