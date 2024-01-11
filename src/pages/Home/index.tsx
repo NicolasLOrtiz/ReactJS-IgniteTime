@@ -11,12 +11,18 @@ import {
 } from './styles'
 
 export const Home = () => {
+  const handleSubmit = () => {}
+
   return (
     <HomeContainer>
-      <form>
+      <form onSubmit={handleSubmit}>
         <FormContainer>
           <label htmlFor="task">Vou trabalhar em</label>
-          <TaskInput id="task" placeholder="Dê um nome para o seu projeto" />
+          <TaskInput
+            id="task"
+            placeholder="Dê um nome para o seu projeto"
+            name="task"
+          />
 
           <label htmlFor="minutesAmount">durante</label>
           <MinutesAmountInput
