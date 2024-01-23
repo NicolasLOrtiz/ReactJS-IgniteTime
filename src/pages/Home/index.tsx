@@ -8,7 +8,7 @@ import {
 import { useForm } from 'react-hook-form'
 import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { createContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { Countdown } from '../../components/Countdown'
 import { NewCycleForm } from '../../components/NewCycleForm'
 
@@ -37,6 +37,13 @@ interface CyclesContextType {
 }
 
 export const CyclesContext = createContext({} as CyclesContextType)
+
+export const useCycles = () => {
+  const { activeCycle, activeCycleId, markCurrentCycleAsFinished } =
+    useContext(CyclesContext)
+
+  return { activeCycle, activeCycleId, markCurrentCycleAsFinished }
+}
 
 export const Home = () => {
   const [cycles, setCycles] = useState<Cycle[]>([])
