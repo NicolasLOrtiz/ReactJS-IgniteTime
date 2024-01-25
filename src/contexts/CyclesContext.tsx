@@ -8,7 +8,7 @@ interface CyclesContextType {
   setAmountSecondsPassed: (amount: number) => void
   amountSecondsPassed: number
   handleInterruptCycle: () => void
-  handleCreateNewCycle: (data: NewCycleFormData) => void
+  createNewCycle: (data: NewCycleFormData) => void
 }
 
 export const CyclesContext = createContext({} as CyclesContextType)
@@ -24,7 +24,7 @@ export const CyclesContextProvider = ({
   const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
   const [amountSecondsPassed, setAmountSecondsPassed] = useState(0)
 
-  function handleCreateNewCycle(data: NewCycleFormData) {
+  function createNewCycle(data: NewCycleFormData) {
     const id = String(new Date().getTime())
 
     const newCycle: Cycle = {
@@ -37,7 +37,6 @@ export const CyclesContextProvider = ({
     setCycles((state) => [...state, newCycle])
     setActiveCycleId(id)
     setAmountSecondsPassed(0)
-    // reset()
   }
 
   function handleInterruptCycle() {
@@ -74,7 +73,7 @@ export const CyclesContextProvider = ({
         setAmountSecondsPassed,
         amountSecondsPassed,
         handleInterruptCycle,
-        handleCreateNewCycle,
+        createNewCycle,
       }}
     >
       {children}

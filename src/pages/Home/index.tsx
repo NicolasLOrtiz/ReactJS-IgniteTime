@@ -31,8 +31,7 @@ export interface Cycle {
 }
 
 export const Home = () => {
-  const { handleCreateNewCycle, handleInterruptCycle, activeCycle } =
-    useCycles()
+  const { createNewCycle, handleInterruptCycle, activeCycle } = useCycles()
   const newCycleForm = useForm<NewCycleFormData>({
     resolver: zodResolver(newCycleFormValidationSchema),
     defaultValues: {
@@ -41,10 +40,15 @@ export const Home = () => {
     },
   })
 
-  const { handleSubmit, watch } = newCycleForm
+  const { handleSubmit, watch, reset } = newCycleForm
 
   const task = watch('task')
   const isSubmitDisable = !task
+
+  function handleCreateNewCycle(data: NewCycleFormData) {
+    createNewCycle(data)
+    reset()
+  }
 
   return (
     <HomeContainer>
