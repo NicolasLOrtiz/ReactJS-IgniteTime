@@ -28,6 +28,7 @@ export interface Cycle {
   minutesAmount: number
   startDate: Date
   finishedDate?: Date
+  interruptedDate?: Date
 }
 
 export const Home = () => {

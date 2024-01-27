@@ -1,15 +1,11 @@
 import { HistoryContainer, HistoryList, Status } from './styles'
+import { useCycles } from '../../hooks/useCycles.ts'
+import { formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale/pt-BR'
 
-interface Cycle {
-  id: string
-  task: string
-  minutesAmount: number
-  startDate: Date
-  finishedDate: Date
-  interruptedDate: Date
-}
+export const History = () => {
+  const { cycles } = useCycles()
 
-export const History = ({ cycles }: { cycles: Cycle[] }) => {
   return (
     <HistoryContainer>
       <h1>Meu histórico</h1>
@@ -29,7 +25,12 @@ export const History = ({ cycles }: { cycles: Cycle[] }) => {
                 <tr key={cycle.id}>
                   <td>{cycle.task}</td>
                   <td>{cycle.minutesAmount} minutos</td>
-                  <td>{cycle.startDate.toISOString()}</td>
+                  <td>
+                    {formatDistanceToNow(cycle.startDate, {
+                      addSuffix: true,
+                      locale: ptBR,
+                    })}
+                  </td>
                   <td>
                     {cycle.finishedDate && (
                       <Status statusColor="green">Concluído</Status>

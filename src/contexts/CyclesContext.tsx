@@ -2,6 +2,7 @@ import { Cycle, NewCycleFormData } from '../pages/Home'
 import { createContext, ReactNode, useState } from 'react'
 
 interface CyclesContextType {
+  cycles: Cycle[]
   activeCycle: Cycle | undefined
   activeCycleId: string | null
   markCurrentCycleAsFinished: () => void
@@ -19,9 +20,9 @@ export const CyclesContextProvider = ({
   children: ReactNode
 }) => {
   const [cycles, setCycles] = useState<Cycle[]>([])
-
-  const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
   const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
+  const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
+
   const [amountSecondsPassed, setAmountSecondsPassed] = useState(0)
 
   function createNewCycle(data: NewCycleFormData) {
@@ -67,6 +68,7 @@ export const CyclesContextProvider = ({
   return (
     <CyclesContext.Provider
       value={{
+        cycles,
         activeCycle,
         activeCycleId,
         markCurrentCycleAsFinished,
